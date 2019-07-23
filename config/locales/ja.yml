@@ -22,6 +22,8 @@ ja:
         body: 本文
         released_at: 掲載開始日
         expired_at: 掲載終了日
+        no_expiration: 掲載終了日を設定しない
+        expired_at_too_old: は掲載開始日より新しい日時にしてください
         member_only: 会員限定
     errors:
       messages:
