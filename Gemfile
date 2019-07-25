@@ -29,3 +29,5 @@ gem 'email_validator', '~>1.6'
 gem 'rails-i18n', '~>5.1'
 gem 'bcrypt', '~>3.1.7'
 gem 'pry-byebug', group: :development
+gem 'kaminari'
+gem 'kaminari-i18n'
