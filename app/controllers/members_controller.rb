@@ -20,7 +20,7 @@ class MembersController < ApplicationController
   end
 
   def create
-    @member = Member.new(params[:member])
+    @member = Member.new(member_params)
     if @member.save
       redirect_to @member, notice: "会員登録しました"
     else
@@ -34,7 +34,7 @@ class MembersController < ApplicationController
 
   def update
     @member = Member.find(params[:id])
-    @member.assign_attributes(params[:member])
+    @member.assign_attributes(member_params)
     if @member.save
       redirect_to @member, notice: "会員情報を更新しました"
     else
@@ -46,5 +46,12 @@ class MembersController < ApplicationController
     @member = Member.find(params[:id])
     @member.destroy
     redirect_to :members, notice: "会員を削除しました"
+  end
+
+  private
+  def member_params
+    attrs = [:number, :name, :full_name, :sex, :birthday, :email, :administrator]
+    attrs << :password if params[:action] == 'create'
+    params.require(:member).permit(attrs)
   end
 end
