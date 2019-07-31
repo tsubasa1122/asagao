@@ -31,3 +31,4 @@ gem 'bcrypt', '~>3.1.7'
 gem 'pry-byebug', group: :development
 gem 'kaminari'
 gem 'kaminari-i18n'
+gem 'jquery-rails'
