@@ -32,3 +32,4 @@ gem 'pry-byebug', group: :development
 gem 'kaminari'
 gem 'kaminari-i18n'
 gem 'jquery-rails'
+gem 'mini_magick', '~> 4.8'
