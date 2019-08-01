@@ -50,7 +50,7 @@ class MembersController < ApplicationController
 
   private
   def member_params
-    attrs = [:number, :name, :full_name, :sex, :birthday, :email, :administrator]
+    attrs = [:number, :name, :full_name, :sex, :birthday, :email, :administrator, :new_profile_picture]
     attrs << :password if params[:action] == 'create'
     params.require(:member).permit(attrs)
   end
