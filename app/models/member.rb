@@ -10,6 +10,12 @@ class Member < ApplicationRecord
   validates :full_name, presence: true, length: { maximum: 20 }
   validates :email, email: { allow_blank: true }
 
+  before_save do
+    if new_profile_picture
+      self.profile_picture = new_profile_picture
+    end
+  end
+
   attr_accessor :current_password
   validates :password, presence: { if: :current_password }
   class << self
