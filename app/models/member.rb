@@ -9,6 +9,15 @@ class Member < ApplicationRecord
   validates :name, presence: true, format: { with: /\A[A-Za-z][A-Za-z0-9]*\z/, allow_blank: true, message: :invalid_member_name }, uniqueness: { case_sensitive: false } 
   validates :full_name, presence: true, length: { maximum: 20 }
   validates :email, email: { allow_blank: true }
+  validate if: :new_profile_picture do
+    if new_profile_picture.respond_to?(:content_type)
+      unless new_profile_picture.content_type.in?(ALLOWED_CONTENT_TYPES)
+        errors.add(:new_profile_picture, :invalid_image_type)
+      end
+    else
+      errors.add(:new_profile_picture, :invalid)
+    end
+  end
 
   before_save do
     if new_profile_picture
