@@ -2,6 +2,7 @@ class EntryImage < ApplicationRecord
   belongs_to :entry
   has_one_attached :data
   attribute :new_data
+  acts_as_list scope: :entry
 
   validates :new_data, presence: { on: :create }
 
