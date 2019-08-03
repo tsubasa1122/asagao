@@ -4,6 +4,7 @@ class Member < ApplicationRecord
   has_many :entries, dependent: :destroy
   has_one_attached :profile_picture
   attribute :new_profile_picture
+  attribute :remove_profile_picture, :boolean
 
   validates :number, presence: true, numericality: { only_integer: true, greater_than: 0, less_than: 100, allow_blank: true}, uniqueness: true
   validates :name, presence: true, format: { with: /\A[A-Za-z][A-Za-z0-9]*\z/, allow_blank: true, message: :invalid_member_name }, uniqueness: { case_sensitive: false } 
@@ -22,6 +23,8 @@ class Member < ApplicationRecord
   before_save do
     if new_profile_picture
       self.profile_picture = new_profile_picture
+    elsif remove_profile_picture
+      self.profile_picture.purge
     end
   end
 
